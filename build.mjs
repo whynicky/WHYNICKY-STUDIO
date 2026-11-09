@@ -225,7 +225,7 @@ const lookbook = `<section class="lookbook section-pad" aria-labelledby="lookboo
     <div class="lookbook-grid">
       ${lookbookFrames.map((frame, index) => {
         const [name, alt, pieces] = frame;
-        const anchor = name === 'night-01' ? ' id="after-hours"' : name === 'fit-a' ? ' id="fittings"' : '';
+        const anchor = name === homeFrames[0][0] ? ' id="after-hours"' : name === 'fit-a' ? ' id="fittings"' : '';
         return `<figure class="editorial-frame"${anchor}>
           <a class="lookbook-tile" href="${sitePath(`/assets/${name}.webp`)}" data-look-frame="${index}" aria-label="Open photograph ${index + 1}. ${alt}">
             ${editorial(frame, { eager: index === 0, sizes: '(max-width: 600px) 50vw, (max-width: 1000px) 33vw, 25vw' })}

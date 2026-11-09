@@ -43,17 +43,18 @@ const frames = {
 };
 
 const frame = id => [id, ...frames[id]];
+const afterHoursId = 'after-hours-lounge';
 export const lookbookFrames = [
-  'banner-hero', 'banner-medium', 'night-01', 'fit-a', 'studio-03',
+  'banner-hero', 'banner-medium', afterHoursId, 'night-01', 'fit-a', 'studio-03',
   'banner-detail', 'fit-b', 'concrete-01', 'night-02', 'cinder-look',
   'flue-look', 'soot-look', 'studio-01', 'stage-c2', 'night-03',
-  'overland-fitting', 'tailoring-fitting', 'splay-fitting', 'fault-lines-campaign', 'studio-city-campaign',
+  'overland-fitting', 'tailoring-fitting', 'splay-fitting', 'fault-lines-campaign',
 ].map(frame);
 
 export const heroFrame = frame('banner-hero');
 export const campaignFrames = ['banner-medium', 'banner-detail'].map(frame);
 export const studioCampaignFrames = ['fault-lines-campaign', 'studio-city-campaign'].map(frame);
-export const homeFrames = ['after-hours-lounge', 'flue-studio', 'soot-look', 'cinder-look'].map(frame);
+export const homeFrames = [afterHoursId, 'flue-studio', 'soot-look', 'cinder-look'].map(frame);
 
 const productFittings = {
   'rift-jacket': 'rift-fitting',
