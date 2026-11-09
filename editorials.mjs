@@ -25,7 +25,7 @@ const frames = {
   'stage-a2': ['A close portrait in the raised collar and red cotton drill of the Hinge Jacket.', ['hinge-jacket'], 'landscape'],
   'stage-b2': ['A model in profile shows the curved knee of the Arc Knee Pant and the angular Moraine Vest.', ['arc-knee', 'moraine-vest'], 'portrait'],
   'stage-c2': ['A seated model shows how the Silt Trouser panel hangs over a raised knee.', ['silt-trouser', 'shear-knit'], 'landscape'],
-  'night-home': ['A model in the Slag Bomber and Drift Denim stands on a wet street at night.', ['slag-bomber', 'drift-denim'], 'wide'],
+  'night-home-blue': ['A model in the Slag Bomber and Drift Denim stands beside blue-gray steel shutters on a wet street at night.', ['slag-bomber', 'drift-denim'], 'wide'],
 };
 
 const frame = id => [id, ...frames[id]];
@@ -36,7 +36,7 @@ export const lookbookFrames = [
   'soot-detail', 'stage-c2', 'studio-01', 'flue-detail', 'fit-b', 'stage-a2', 'fit-c2',
 ].map(frame);
 
-export const homeFrames = ['night-home', 'flue-look', 'soot-look', 'cinder-look'].map(frame);
+export const homeFrames = ['night-home-blue', 'flue-look', 'soot-look', 'cinder-look'].map(frame);
 
 export const formats = {
   wide: [1600, 900],

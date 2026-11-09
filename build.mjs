@@ -102,7 +102,7 @@ function dialogs(page) {
     dialog('bag', 'Bag', '<div class="panel-body bag-body" id="bag-content"></div><p class="visually-hidden" id="bag-status" role="status"></p>');
 }
 
-function document(page, title, description, body, socialImage = '/assets/skyline-hero.webp') {
+function document(page, title, description, body, socialImage = '/assets/fault-lines-skyline.webp') {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -177,8 +177,8 @@ function catalog() {
 const home = `<section class="hero" aria-labelledby="hero-title">
     <div class="hero-scene">
       <picture class="hero-distance">
-        <source media="(max-width: 760px) and (orientation: portrait)" srcset="/assets/skyline-hero-mobile.webp">
-        ${image('/assets/skyline-hero.webp', 'A model in the Overland Parka and Drift Denim stands on dark volcanic flats under a blue sky.', { width: 1672, height: 941, eager: true, extra: 'class="hero-photo"' })}
+        <source media="(max-width: 760px) and (orientation: portrait)" srcset="/assets/fault-lines-skyline-mobile.webp">
+        ${image('/assets/fault-lines-skyline.webp', 'A model in a cropped charcoal hooded jacket and wide stone-gray denim stands under a blue sky.', { width: 1672, height: 941, eager: true, extra: 'class="hero-photo"' })}
       </picture>
       <div class="hero-plane" aria-hidden="true"></div>
     </div>
@@ -195,7 +195,10 @@ const home = `<section class="hero" aria-labelledby="hero-title">
     <div class="product-grid">${featuredProducts.map(productCard).join('')}</div>
   </section>
   <section class="campaign-spotlight" aria-labelledby="after-hours-title">
-    ${editorial(homeFrames[0])}
+    <picture>
+      <source media="(max-width: 760px) and (orientation: portrait)" srcset="/assets/${homeFrames[0][0]}-mobile.webp">
+      ${editorial(homeFrames[0])}
+    </picture>
     <div class="spotlight-copy">
       <p class="eyebrow">${season}</p>
       <h2 id="after-hours-title">After Hours</h2>
@@ -347,7 +350,7 @@ const pages = [
 ];
 
 const assets = [
-  'geist.woff2', 'geist-license.txt', 'anton.ttf', 'anton-OFL.txt', 'favicon.svg', 'skyline-hero.webp', 'skyline-hero-mobile.webp',
+  'geist.woff2', 'geist-license.txt', 'anton.ttf', 'anton-OFL.txt', 'favicon.svg', 'fault-lines-skyline.webp', 'fault-lines-skyline-mobile.webp', `${homeFrames[0][0]}-mobile.webp`,
   ...[...lookbookFrames, ...homeFrames]
     .flatMap(([name]) => [`${name}.webp`, `${name}-small.webp`]),
   ...[...products, ...archivedProducts].flatMap(product => [
