@@ -35,7 +35,7 @@ const frames = {
   'stage-a2': ['A close portrait in the raised collar and red cotton drill of the Hinge Jacket.', ['hinge-jacket'], 'landscape'],
   'stage-b2': ['A model in profile shows the curved knee of the Arc Knee Pant and the angular Moraine Vest.', ['arc-knee', 'moraine-vest'], 'portrait'],
   'stage-c2': ['A seated model shows how the Silt Trouser panel hangs over a raised knee.', ['silt-trouser', 'shear-knit'], 'landscape'],
-  'night-home-blue': ['A model in the Slag Bomber and Drift Denim stands beside blue-gray steel shutters on a wet street at night.', ['slag-bomber', 'drift-denim'], 'wide'],
+  'after-hours-lounge': ['Two models in worn leather jackets and wide denim by a brown leather sofa.', ['slag-bomber', 'drift-denim'], 'loungeWide'],
   'night-home-blue-mobile': ['The Slag Bomber and wide Drift Denim beside a steel shutter.', ['slag-bomber', 'drift-denim'], 'nightMobile'],
   'rift-fitting': ['The short stone Rift Jacket and Drift Denim worn on concrete stairs.', ['rift-jacket', 'drift-denim'], 'portrait'],
   'flue-fitting': ['The long Flue Coat in stride with the Break Trouser.', ['flue-coat', 'break-trouser'], 'portrait'],
@@ -53,7 +53,7 @@ export const lookbookFrames = [
 export const heroFrame = frame('banner-hero');
 export const campaignFrames = ['banner-medium', 'banner-detail'].map(frame);
 export const studioCampaignFrames = ['fault-lines-campaign', 'studio-city-campaign'].map(frame);
-export const homeFrames = ['night-home-blue', 'flue-studio', 'soot-look', 'cinder-look'].map(frame);
+export const homeFrames = ['after-hours-lounge', 'flue-studio', 'soot-look', 'cinder-look'].map(frame);
 
 const productFittings = {
   'rift-jacket': 'rift-fitting',
@@ -92,6 +92,7 @@ export const formats = {
   landscape: [1440, 1080],
   portrait: [1000, 1250],
   fittingWide: [1586, 992],
+  loungeWide: [1672, 941, 960],
   bannerWide: [1672, 941],
   campaignPortrait: [1122, 1402],
   campaignDetail: [1448, 1086],

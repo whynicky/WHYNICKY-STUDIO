@@ -202,11 +202,8 @@ const home = `<section class="hero" aria-labelledby="hero-title">
       ${editorial(studioCampaignFrames[1], { sizes: '(max-width: 760px) calc(100vw - 32px), 65vw' })}
     </div>
   </section>
-  <section class="campaign-spotlight" aria-labelledby="after-hours-title">
-    <picture>
-      <source media="(max-width: 760px)" srcset="${sitePath(`/assets/${homeFrames[0][0]}-mobile.webp`)}">
-      ${editorial(homeFrames[0])}
-    </picture>
+  <section class="campaign-spotlight" id="after-hours" aria-labelledby="after-hours-title">
+    ${editorial(homeFrames[0])}
     <div class="spotlight-copy">
       <h2 id="after-hours-title">After Hours</h2>
       ${inlineLink('/lookbook/#after-hours', 'View lookbook')}
@@ -374,7 +371,7 @@ const pages = [
 const assets = [
   'geist.woff2', 'geist-license.txt', 'brand-emblem.svg', 'brand-wordmark.svg', 'brand-wordmark-tall.svg', 'brand-wordmark-stacked.svg',
   'favicon.svg', 'favicon.ico', 'apple-touch-icon.png',
-  'banner-hero.avif', 'banner-hero-1200.avif', 'banner-hero-mobile.avif', 'banner-hero-mobile-720.avif', 'banner-hero-mobile.webp', `${homeFrames[0][0]}-mobile.webp`,
+  'banner-hero.avif', 'banner-hero-1200.avif', 'banner-hero-mobile.avif', 'banner-hero-mobile-720.avif', 'banner-hero-mobile.webp',
   ...[...lookbookFrames, ...homeFrames, ...campaignFrames, ...studioCampaignFrames]
     .flatMap(([name]) => [`${name}.webp`, `${name}-small.webp`]),
   ...[...products, ...archivedProducts].flatMap(product => [
