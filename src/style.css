@@ -259,6 +259,28 @@ main:focus { outline: none; }
 .product-card__label p { color: var(--muted); }
 .product-card__label > span { flex-shrink: 0; padding-top: 2px; font-variant-numeric: tabular-nums; }
 
+.campaign-spread { padding-bottom: 64px; }
+.campaign-spread-heading { padding-bottom: 16px; }
+.campaign-spread-heading .eyebrow { margin-bottom: 8px; color: var(--muted); }
+.campaign-spread-heading h2 { font-size: 48px; line-height: 1; }
+.campaign-images {
+  display: grid;
+  grid-template-columns: minmax(0, 8fr) minmax(0, 15fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+.campaign-images img { background: var(--ground); }
+.campaign-images figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 8px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.campaign-images figcaption span { color: var(--muted); }
+
 .campaign-spotlight {
   position: relative;
   width: 100%;
@@ -501,6 +523,9 @@ main:focus { outline: none; }
   .catalog-title { gap: 8px; align-items: end; }
   .catalog-title h1 { font-size: 30px; line-height: 36px; }
   .catalog-caption { font-size: 12px; text-align: right; }
+  .campaign-spread { padding-bottom: 48px; }
+  .campaign-spread-heading h2 { font-size: 36px; line-height: 40px; }
+  .campaign-images { grid-template-columns: minmax(0, 1fr); }
   .campaign-spotlight { min-height: 440px; height: 66svh; }
   .spotlight-copy { bottom: 24px; }
   .spotlight-copy h2 { font-size: 48px; }

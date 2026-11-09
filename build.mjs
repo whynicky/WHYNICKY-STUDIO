@@ -204,6 +204,30 @@ const home = `<section class="hero" aria-labelledby="hero-title">
     </div>
     <div class="product-grid">${featuredProducts.map(productCard).join('')}</div>
   </section>
+  <section class="campaign-spread section-pad" id="campaign" aria-labelledby="campaign-title">
+    <div class="section-line campaign-spread-heading">
+      <div>
+        <p class="eyebrow">${season}</p>
+        <h2 id="campaign-title">${campaign}</h2>
+      </div>
+    </div>
+    <div class="campaign-images">
+      <figure>
+        ${image('/assets/fault-lines-campaign.webp', 'Two models in oversized denim and worn leather sit beneath the WHYNICKY® STUDIO wordmark.', {
+          width: 1122, height: 1402,
+          extra: `srcset="${sitePath('/assets/fault-lines-campaign-small.webp')} 720w, ${sitePath('/assets/fault-lines-campaign.webp')} 1122w" sizes="(max-width: 760px) calc(100vw - 32px), 35vw"`,
+        })}
+        <figcaption><span>01 / Studio portrait</span>${inlineLink('/lookbook/', 'View lookbook', 'diagonal')}</figcaption>
+      </figure>
+      <figure>
+        ${image('/assets/studio-city-campaign.webp', 'An illuminated WHYNICKY® STUDIO billboard in blue, orange and pale yellow on a city street at dusk.', {
+          width: 1920, height: 1281,
+          extra: `srcset="${sitePath('/assets/studio-city-campaign-small.webp')} 960w, ${sitePath('/assets/studio-city-campaign.webp')} 1920w" sizes="(max-width: 760px) calc(100vw - 32px), 65vw"`,
+        })}
+        <figcaption><span>02 / City campaign</span>${inlineLink('/shop/', 'Shop collection', 'diagonal')}</figcaption>
+      </figure>
+    </div>
+  </section>
   <section class="campaign-spotlight" aria-labelledby="after-hours-title">
     <picture>
       <source media="(max-width: 760px) and (orientation: portrait)" srcset="${sitePath(`/assets/${homeFrames[0][0]}-mobile.webp`)}">
@@ -366,6 +390,7 @@ const assets = [
   'geist.woff2', 'geist-license.txt', 'brand-emblem.svg', 'brand-wordmark.svg', 'brand-wordmark-tall.svg', 'brand-wordmark-stacked.svg',
   'favicon.svg', 'favicon.ico', 'apple-touch-icon.png',
   'fault-lines-skyline.webp', 'fault-lines-skyline-mobile.webp', 'fault-lines-skyline.avif', 'fault-lines-skyline-1200.avif', 'fault-lines-skyline-mobile.avif', `${homeFrames[0][0]}-mobile.webp`,
+  'fault-lines-campaign.webp', 'fault-lines-campaign-small.webp', 'studio-city-campaign.webp', 'studio-city-campaign-small.webp',
   ...[...lookbookFrames, ...homeFrames]
     .flatMap(([name]) => [`${name}.webp`, `${name}-small.webp`]),
   ...[...products, ...archivedProducts].flatMap(product => [
