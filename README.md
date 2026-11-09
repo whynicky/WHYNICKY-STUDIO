@@ -1,41 +1,60 @@
-# WHYNICKY® STUDIO
+<p align="center">
+  <a href="https://whynicky.github.io/WHYNICKY-STUDIO/">
+    <img src="docs/preview/studio-emblem.webp" width="170" alt="WHYNICKY® STUDIO oval emblem">
+  </a>
+</p>
 
-**Fault Lines · Autumn / Winter 2026**
+<h1 align="center">WHYNICKY® STUDIO</h1>
 
-[![Fault Lines homepage with the oval studio emblem over the campaign photograph](docs/preview/fault-lines.webp)](https://whynicky.github.io/WHYNICKY-STUDIO/)
+<p align="center">Fault Lines<br>Autumn / Winter 2026</p>
 
-A fashion storefront for a 24-piece menswear and unisex collection. Browse and filter the catalog, open garment details, or shop the looks in a 26-frame editorial. The demo bag remembers sizes and quantities in the current browser.
+[![The WHYNICKY® STUDIO homepage with two models beneath the Fault Lines canvas banner](docs/preview/fault-lines.webp)](https://whynicky.github.io/WHYNICKY-STUDIO/)
 
-[Open the live site](https://whynicky.github.io/WHYNICKY-STUDIO/) · [Shop](https://whynicky.github.io/WHYNICKY-STUDIO/shop/) · [Lookbook](https://whynicky.github.io/WHYNICKY-STUDIO/lookbook/) · [Deployment](https://github.com/whynicky/WHYNICKY-STUDIO/actions/workflows/pages.yml)
+<p align="center"><a href="https://whynicky.github.io/WHYNICKY-STUDIO/">Visit the storefront</a></p>
 
-## Studio fittings
+Fault Lines is a collection of 24 menswear and unisex pieces. Cropped jackets, curved denim seams and heavy knits give the collection its shape.
 
-The opening frame anchors the grid. Two portraits share its baseline on desktop and sit together beneath it on mobile. Each look links to the garments in the frame.
+## Studio campaign
 
-![Studio fittings with three aligned editorial photographs](docs/preview/studio-fittings.webp)
+[![The studio portrait and the WHYNICKY® STUDIO city billboard side by side](docs/preview/studio-campaign.webp)](https://whynicky.github.io/WHYNICKY-STUDIO/#studio-campaign)
 
-## Brand assets
+![Studio fittings in charcoal outerwear, washed denim and heavy knitwear](docs/preview/studio-fittings.webp)
 
-The oval emblem pairs outlined lettering with a split W and a separate registered mark. The footer wordmark uses taller letter contours, with a stacked composition for smaller screens.
+## Shop
 
-![Tall split-W wordmark in the site footer](docs/preview/wordmark-footer.webp)
+Hover over a garment to see the back, or tap **Back view** on a phone. Product pages show the garment on a model, a close detail and the other pieces in the outfit.
 
-[Oval emblem](src/assets/brand-emblem.svg) · [Wide wordmark](src/assets/brand-wordmark-tall.svg) · [Stacked wordmark](src/assets/brand-wordmark-stacked.svg) · [Favicon](src/assets/favicon.svg)
+<p align="center">
+  <a href="https://whynicky.github.io/WHYNICKY-STUDIO/shop/"><img src="docs/preview/shop.webp" width="49%" alt="Shop catalog with garments on white backgrounds"></a>
+  <a href="https://whynicky.github.io/WHYNICKY-STUDIO/product/scarp-rider/"><img src="docs/preview/product.webp" width="49%" alt="Scarp Rider product page showing the jacket on a model"></a>
+</p>
 
-## Local development
+## Lookbook
 
-Use Node.js 20 or later. The storefront is built with HTML, CSS, and JavaScript and has no package dependencies.
+Open any of the 20 photographs for a closer look. Links below each outfit take you to the pieces in the frame.
+
+[![The Fault Lines Lookbook with campaign and studio photographs](docs/preview/lookbook.webp)](https://whynicky.github.io/WHYNICKY-STUDIO/lookbook/)
+
+## On mobile
+
+![The WHYNICKY® STUDIO homepage, Shop and Lookbook on mobile](docs/preview/mobile.webp)
+
+## Footer
+
+![The full width WHYNICKY® STUDIO footer wordmark](docs/preview/wordmark-footer.webp)
+
+## Run locally
+
+Use Node.js 20 or later. The site has no package dependencies.
 
 ```sh
 npm run dev
 ```
 
-Open the address printed in the terminal. `npm run build` generates the static site in `dist/`. To preview with the GitHub Pages path, run the command below.
+Open the address printed in the terminal. To build for the GitHub Pages path:
 
 ```sh
-SITE_BASE_PATH=/WHYNICKY-STUDIO npm run dev
+SITE_BASE_PATH=/WHYNICKY-STUDIO SITE_ORIGIN=https://whynicky.github.io npm run build
 ```
 
-Product data lives in [collection.js](src/collection.js) and [new-pieces.js](src/new-pieces.js). The [editorial data](editorials.mjs) maps each photograph to the garments in that look. Prices and garment measurements are illustrative.
-
-The [Pages workflow](.github/workflows/pages.yml) builds and deploys `dist/` on pushes to `main`. GitHub supplies the deployment path and origin, which the build uses for links, assets, and social images.
+The static build goes to `dist/`. The [Pages workflow](.github/workflows/pages.yml) publishes it when `main` is updated. The bag is a browser demo with illustrative prices and measurements.

@@ -100,9 +100,8 @@ export const archivedProducts = originalProducts.slice(3).map(product => ({
 export const productById = new Map([...products, ...archivedProducts].map(product => [product.id, product]));
 
 export const featuredProducts = [
-  'rift-jacket', 'drift-denim', 'slag-bomber',
-  'hinge-jacket', 'offset-jean', 'strata-knit',
-  'flue-coat', 'silt-trouser', 'cinder-knit',
+  'scarp-rider', 'offset-jean', 'hinge-jacket',
+  'break-trouser', 'slag-bomber', 'strata-knit',
 ].map(id => productById.get(id));
 export const productPath = product => `/product/${product.id}/`;
 export const photoPath = (product, view = 'front', scale = '') =>

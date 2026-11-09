@@ -68,7 +68,7 @@ function bagLine(line, interactive) {
     <a href="${sitePath(productPath(product))}" tabindex="-1" aria-hidden="true"><img src="${sitePath(photoPath(product, 'front', 'card'))}" width="80" height="100" alt=""></a>
     <div>
       <h3><a href="${sitePath(productPath(product))}">${product.name}</a></h3>
-      <p>${product.color} · Size ${line.size}</p>
+      <p>Size ${line.size}</p>
       ${interactive ? `<div class="bag-line__controls">
         <div class="quantity" role="group" aria-label="Quantity for ${variant}">
           <button type="button" data-bag-action="decrease" aria-label="Decrease quantity of ${variant}" ${line.quantity === 1 ? 'disabled' : ''}>−</button>
@@ -92,9 +92,9 @@ function renderBag() {
   bagContent.innerHTML = count
     ? `<div>${bag.map(line => bagLine(line, true)).join('')}</div>
       <div class="bag-total">${subtotalRow}
-        <p class="muted">Demonstration store. Payment is unavailable.</p>
+        <p class="muted">Demo store. Orders are disabled.</p>
         ${storageAvailable ? '' : '<p class="muted">This browser is unable to save your bag after reload.</p>'}
-        <a class="button-primary" href="${sitePath('/checkout/')}">Checkout preview <span aria-hidden="true">↗</span></a>
+        <a class="button-primary" href="${sitePath('/checkout/')}">Checkout preview</a>
       </div>`
     : empty;
   if (checkoutSummary) {
@@ -122,9 +122,9 @@ function renderSearch() {
   document.querySelector('#search-results').innerHTML = matches.length
     ? matches.map(product => `<a class="search-item" href="${sitePath(productPath(product))}">
         <img src="${sitePath(photoPath(product, 'front', 'card'))}" width="64" height="80" alt="" loading="lazy">
-        <span><strong>${product.name}</strong><small>${product.color}</small></span><span>${money(product.price)}</span>
+        <strong>${product.name}</strong><span>${money(product.price)}</span>
       </a>`).join('')
-    : '<div class="empty-state"><p>Try a name, material or color such as “denim” or “stone”.</p><button type="button" class="text-link" data-clear-search>Clear search</button></div>';
+    : '<div class="empty-state"><p>No pieces found.</p><button type="button" class="text-link" data-clear-search>Clear search</button></div>';
 }
 
 function openDialog(id, opener) {
@@ -233,7 +233,7 @@ document.addEventListener('click', event => {
   card.dataset.cardSide = showBack ? 'back' : 'front';
   control.setAttribute('aria-pressed', String(showBack));
   control.setAttribute('aria-label', `${nextView} of ${productById.get(card.dataset.product).name}`);
-  control.querySelector('span').textContent = nextView;
+  control.textContent = nextView;
 });
 
 const grid = document.querySelector('#catalog-grid');
@@ -312,9 +312,6 @@ if (productPage) {
     zoomImage.alt = galleryImages[activeView].alt;
   });
   galleryOptions.forEach((option, index) => option.addEventListener('click', () => showView(index)));
-  for (const step of productPage.querySelectorAll('[data-gallery-step]')) {
-    step.addEventListener('click', () => showView(activeView + Number(step.dataset.galleryStep)));
-  }
   productPage.querySelector('.product-gallery').addEventListener('keydown', event => {
     if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
     event.preventDefault();
@@ -365,7 +362,8 @@ if (lookbook) {
     const thumbnail = tile.querySelector('img');
     photo.src = tile.href;
     photo.alt = thumbnail.alt;
-    pieces.replaceChildren(...[...tile.nextElementSibling.childNodes].map(node => node.cloneNode(true)));
+    const caption = tile.nextElementSibling;
+    pieces.replaceChildren(...Array.from(caption?.children || [], link => link.cloneNode(true)));
     status.textContent = `Photograph ${activeFrame + 1} of ${tiles.length}`;
   }
 

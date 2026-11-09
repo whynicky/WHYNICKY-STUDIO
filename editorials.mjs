@@ -1,4 +1,13 @@
 const frames = {
+  'banner-hero': ['Two models in worn leather, wide denim and oxblood cotton stand beneath the WHYNICKY® STUDIO canvas banner.', ['scarp-rider', 'offset-jean', 'hinge-jacket', 'break-trouser'], 'bannerWide'],
+  'banner-medium': ['The cropped oxblood Hinge Jacket and stepped hems of the Break Trouser in window light.', ['hinge-jacket', 'break-trouser'], 'campaignPortrait'],
+  'banner-detail': ['A close portrait showing the raised collar and diagonal zip of the worn leather Scarp Rider.', ['scarp-rider'], 'campaignDetail'],
+  'banner-scarp-fit': ['The Scarp Rider and wide Offset Jean beneath the canvas banner.', ['scarp-rider', 'offset-jean'], 'portrait'],
+  'overland-fitting': ['The long olive Overland Parka worn with the tapered Arc Knee Pant.', ['overland-coat', 'arc-knee'], 'campaignPortrait'],
+  'tailoring-fitting': ['The charcoal Suture Blazer over an ivory Loom Shirt with the espresso Plane Trouser.', ['suture-blazer', 'loom-shirt', 'plane-trouser'], 'campaignPortrait'],
+  'splay-fitting': ['The layered Splay Top and wrapped Silt Trouser in washed stone.', ['splay-top', 'silt-trouser'], 'campaignPortrait'],
+  'fault-lines-campaign': ['Two models sit by a dark leather sofa beneath the studio wordmark.', ['soot-overshirt', 'offset-jean', 'slag-bomber', 'drift-denim'], 'campaignPortrait'],
+  'studio-city-campaign': ['A burgundy and ivory WHYNICKY® STUDIO billboard lights a city street at dusk.', [], 'city'],
   'night-01': ['A model sits by a red shutter in the Slag Bomber and wide black Drift Denim.', ['slag-bomber', 'drift-denim'], 'wide'],
   'night-02': ['A model leans against a metal doorway in the Scarp Rider and washed blue Offset Jean.', ['scarp-rider', 'offset-jean'], 'portrait'],
   'night-03': ['Direct flash picks out the Slag Bomber’s grain and rib collar.', ['slag-bomber'], 'portrait'],
@@ -14,6 +23,7 @@ const frames = {
   'stage-b': ['Side light crosses the shoulder of a felted Moraine Vest.', ['moraine-vest', 'arc-knee'], 'landscape'],
   'stage-c': ['A model in the high-collared Shear Knit and wrapped Silt Trouser stands in directional light.', ['shear-knit', 'silt-trouser'], 'portrait'],
   'flue-look': ['The back vent of the long Flue Coat opens as the model walks across the studio.', ['flue-coat', 'break-trouser'], 'wide'],
+  'flue-studio': ['The long charcoal Flue Coat and stepped Break Trouser against a pale studio backdrop.', ['flue-coat', 'break-trouser'], 'fittingWide'],
   'soot-look': ['The short Soot Overshirt sits above the long, wide Offset Jean.', ['soot-overshirt', 'offset-jean'], 'portrait'],
   'cinder-look': ['A seated model wears the short Cinder Knit with folded espresso Plane Trouser.', ['cinder-knit', 'plane-trouser'], 'portrait'],
   'flue-detail': ['A close profile shows the Flue Coat’s high collar and shaped sleeve.', ['flue-coat'], 'portrait'],
@@ -26,20 +36,65 @@ const frames = {
   'stage-b2': ['A model in profile shows the curved knee of the Arc Knee Pant and the angular Moraine Vest.', ['arc-knee', 'moraine-vest'], 'portrait'],
   'stage-c2': ['A seated model shows how the Silt Trouser panel hangs over a raised knee.', ['silt-trouser', 'shear-knit'], 'landscape'],
   'night-home-blue': ['A model in the Slag Bomber and Drift Denim stands beside blue-gray steel shutters on a wet street at night.', ['slag-bomber', 'drift-denim'], 'wide'],
+  'night-home-blue-mobile': ['The Slag Bomber and wide Drift Denim beside a steel shutter.', ['slag-bomber', 'drift-denim'], 'nightMobile'],
+  'rift-fitting': ['The short stone Rift Jacket and Drift Denim worn on concrete stairs.', ['rift-jacket', 'drift-denim'], 'portrait'],
+  'flue-fitting': ['The long Flue Coat in stride with the Break Trouser.', ['flue-coat', 'break-trouser'], 'portrait'],
+  'underlay-fitting': ['The Underlay Longsleeve sits in layers above the wide Offset Jean.', ['underlay-top', 'offset-jean'], 'portrait'],
 };
 
 const frame = id => [id, ...frames[id]];
 export const lookbookFrames = [
-  'night-01', 'fit-a', 'stage-b', 'studio-03', 'flue-look', 'fit-b2', 'night-04',
-  'fit-c', 'stage-a', 'studio-home-03', 'night-03', 'cinder-look', 'fit-a2',
-  'stage-b2', 'concrete-01', 'cinder-detail', 'stage-c', 'soot-look', 'night-02',
-  'soot-detail', 'stage-c2', 'studio-01', 'flue-detail', 'fit-b', 'stage-a2', 'fit-c2',
+  'banner-hero', 'banner-medium', 'night-01', 'fit-a', 'studio-03',
+  'banner-detail', 'fit-b', 'concrete-01', 'night-02', 'cinder-look',
+  'flue-look', 'soot-look', 'studio-01', 'stage-c2', 'night-03',
+  'overland-fitting', 'tailoring-fitting', 'splay-fitting', 'fault-lines-campaign', 'studio-city-campaign',
 ].map(frame);
 
-export const homeFrames = ['night-home-blue', 'flue-look', 'soot-look', 'cinder-look'].map(frame);
+export const heroFrame = frame('banner-hero');
+export const campaignFrames = ['banner-medium', 'banner-detail'].map(frame);
+export const studioCampaignFrames = ['fault-lines-campaign', 'studio-city-campaign'].map(frame);
+export const homeFrames = ['night-home-blue', 'flue-studio', 'soot-look', 'cinder-look'].map(frame);
+
+const productFittings = {
+  'rift-jacket': 'rift-fitting',
+  'drift-denim': 'night-home-blue-mobile',
+  'slag-bomber': 'night-home-blue-mobile',
+  'hinge-jacket': 'banner-medium',
+  'scarp-rider': 'banner-scarp-fit',
+  'flue-coat': 'flue-fitting',
+  'overland-coat': 'overland-fitting',
+  'vault-vest': 'fit-b',
+  'suture-blazer': 'tailoring-fitting',
+  'relay-jacket': 'fit-a',
+  'moraine-vest': 'stage-b2',
+  'offset-jean': 'banner-scarp-fit',
+  'silt-trouser': 'splay-fitting',
+  'arc-knee': 'stage-b2',
+  'plane-trouser': 'cinder-look',
+  'torsion-trouser': 'fit-a',
+  'break-trouser': 'banner-medium',
+  'strata-knit': 'studio-01',
+  'shear-knit': 'stage-c',
+  'underlay-top': 'underlay-fitting',
+  'loom-shirt': 'tailoring-fitting',
+  'cinder-knit': 'cinder-look',
+  'splay-top': 'splay-fitting',
+  'soot-overshirt': 'soot-look',
+};
+
+export function fittingFor(product) {
+  const id = productFittings[product.id];
+  return id ? frame(id) : undefined;
+}
 
 export const formats = {
   wide: [1600, 900],
   landscape: [1440, 1080],
   portrait: [1000, 1250],
+  fittingWide: [1586, 992],
+  bannerWide: [1672, 941],
+  campaignPortrait: [1122, 1402],
+  campaignDetail: [1448, 1086],
+  nightMobile: [640, 941],
+  city: [1535, 1025, 960],
 };

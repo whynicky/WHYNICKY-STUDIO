@@ -20,7 +20,7 @@ const designs = [
     id: 'flue-coat', name: 'Flue Coat', category: 'outerwear', color: 'Coal', price: 548,
     description: 'A broad saddle yoke carries the weight of waxed cotton duck. The storm collar folds open on one side, and a deep rear vent releases the slightly tapered hem in motion.',
     material: 'Heavy waxed cotton duck. Concealed fastening.', fit: 'Dropped shoulder, generous barrel sleeve and a mid-calf hem.',
-    care: 'Sponge clean and air dry. Rewax as needed.', baseSize: [132, 122], worn: 'flue-detail', related: ['break-trouser', 'cinder-knit', 'offset-jean'],
+    care: 'Sponge clean and air dry. Rewax as needed.', baseSize: [132, 122], related: ['break-trouser', 'cinder-knit', 'offset-jean'],
   },
   {
     id: 'overland-coat', name: 'Overland Parka', category: 'outerwear', color: 'Cold olive', price: 488,
@@ -116,7 +116,7 @@ const designs = [
     id: 'cinder-knit', name: 'Cinder Knit', category: 'tops', color: 'Graphite', price: 208,
     description: 'Flecked reverse stockinette gives this cropped pullover a dry, raised surface. The raglan sleeves swell toward the elbow and gather into deep rib cuffs.',
     material: 'Flecked wool in reverse stockinette with rib trims.', fit: 'Short, wide body with a round neck and generous sleeves.',
-    care: knitCare, baseSize: [124, 56], worn: 'cinder-look', related: ['plane-trouser', 'arc-knee', 'flue-coat'],
+    care: knitCare, baseSize: [124, 56], related: ['plane-trouser', 'arc-knee', 'flue-coat'],
   },
   {
     id: 'splay-top', name: 'Splay Top', category: 'tops', color: 'Stone', price: 162,
@@ -128,7 +128,7 @@ const designs = [
     id: 'soot-overshirt', name: 'Soot Overshirt', category: 'tops', color: 'Soot', price: 218,
     description: 'Two inverted pleats open below the back yoke of this cropped overshirt. Washed dobby picks up a lighter grain around the inset chest welt and wide cuffs.',
     material: 'Heavy washed cotton dobby. Horn buttons.', fit: 'Wide, square body with a short hem and long sleeves.',
-    care: cottonCare, baseSize: [124, 56], worn: 'soot-look', related: ['offset-jean', 'plane-trouser', 'vault-vest'],
+    care: cottonCare, baseSize: [124, 56], related: ['offset-jean', 'plane-trouser', 'vault-vest'],
   },
 ];
 
