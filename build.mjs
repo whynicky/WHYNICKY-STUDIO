@@ -8,7 +8,7 @@ const root = dirname(fileURLToPath(import.meta.url));
 const dist = join(root, 'dist');
 const origin = process.env.SITE_ORIGIN || '';
 const brand = 'WHYNICKY® STUDIO';
-const wordmark = `<span class="wordmark" aria-hidden="true"><span class="wordmark-name">WHYNICKY<sup>®</sup></span> <span class="wordmark-studio">STUDIO</span></span>`;
+const wordmark = `<span class="wordmark" aria-hidden="true"><span class="wordmark-name"><span class="wordmark-core">WHYNICKY</span><sup>®</sup></span> <span class="wordmark-studio">STUDIO</span></span>`;
 const campaign = 'Fault Lines';
 const season = 'Autumn / Winter 2026';
 const nav = [['/shop/', 'Shop'], ['/lookbook/', 'Lookbook'], ['/about/', 'About']];
@@ -102,7 +102,7 @@ function dialogs(page) {
     dialog('bag', 'Bag', '<div class="panel-body bag-body" id="bag-content"></div><p class="visually-hidden" id="bag-status" role="status"></p>');
 }
 
-function document(page, title, description, body, socialImage = '/assets/studio-stage.webp') {
+function document(page, title, description, body, socialImage = '/assets/skyline-hero.webp') {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -136,7 +136,7 @@ function productCard(product, index) {
   return `<article class="product-card" data-product="${product.id}">
     <a href="${productPath(product)}" aria-label="${product.name}, ${product.color}, ${money(product.price)}">
       <div class="product-card__image">
-        <div class="product-card__turn">
+        <div class="product-card__views">
           ${image(photoPath(product, 'front', 'card'), '', { ...card, eager: index < 3, extra: 'class="product-card__front"' })}
           ${image(photoPath(product, 'back', 'card'), '', { ...card, extra: 'class="product-card__back"' })}
         </div>
@@ -177,8 +177,8 @@ function catalog() {
 const home = `<section class="hero" aria-labelledby="hero-title">
     <div class="hero-scene">
       <picture class="hero-distance">
-        <source media="(max-width: 760px)" srcset="/assets/studio-stage-mobile.webp">
-        ${image('/assets/studio-stage.webp', 'The Rift Jacket and Drift Denim hang in a shaft of blue studio light.', { width: 1672, height: 941, eager: true, extra: 'class="hero-photo"' })}
+        <source media="(max-width: 760px) and (orientation: portrait)" srcset="/assets/skyline-hero-mobile.webp">
+        ${image('/assets/skyline-hero.webp', 'A model in the Overland Parka and Drift Denim stands on dark volcanic flats under a blue sky.', { width: 1672, height: 941, eager: true, extra: 'class="hero-photo"' })}
       </picture>
       <div class="hero-plane" aria-hidden="true"></div>
     </div>
@@ -347,7 +347,7 @@ const pages = [
 ];
 
 const assets = [
-  'geist.woff2', 'geist-license.txt', 'anton.ttf', 'anton-OFL.txt', 'favicon.svg', 'studio-stage.webp', 'studio-stage-mobile.webp',
+  'geist.woff2', 'geist-license.txt', 'anton.ttf', 'anton-OFL.txt', 'favicon.svg', 'skyline-hero.webp', 'skyline-hero-mobile.webp',
   ...[...lookbookFrames, ...homeFrames]
     .flatMap(([name]) => [`${name}.webp`, `${name}-small.webp`]),
   ...[...products, ...archivedProducts].flatMap(product => [

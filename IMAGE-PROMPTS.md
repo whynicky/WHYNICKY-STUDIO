@@ -1,5 +1,12 @@
 # Fault Lines image prompts
 
+
+## Daylight hero
+
+Generate an original 16:9 panoramic fashion campaign photograph, a real full-bleed hero for WHYNICKY STUDIO, no text or logo at all. Aim for the composition of an independent streetwear campaign where a small full-length styled figure anchors a monumental landscape. Strong bright cobalt blue midday sky with broad volumetric white and cool grey clouds occupies the upper 45 percent; sweeping long straight horizon, distant low slate mesas soft on the left and right at y=45 percent. Ground below is dark gray weathered flat volcanic clay and scattered small black stone fragments, with fine natural lines, textured but not busy. A single model exactly around x=53 percent, head at y=34 percent, soles at y=80 percent, proportionately small and fully visible. A slim tall adult Black male model with a clean-shaven face, wearing the exact large cold-olive Overland Parka from the product reference (3-panel hood up over forehead, deep storm yoke, dark olive heavyweight gabardine, diagonal concealed closure, coat reaches below the knee), exact Drift Denim from the product reference with washed charcoal arcs and its wide legs, and matte black unbranded boots. Stands with natural weight shifted slightly, arms relaxed, looking just past lens. Distinct understated garment silhouette and recognizable fit. Ground-level camera angle using 32mm editorial lens and enough camera distance to keep subject completely natural. Bright directional afternoon light with physically correct contact shadow from the model, detailed fabric and skin without glamour retouching. Clean cinematic contrast and lightly grainy film color but sharp and real. Leave a balanced, quiet band horizontally across the middle at y=47–57 percent for a bold white brand title added in web code. No road, trail, grass, quarry, excavated rock wall, buildings, text, product packshot, props, badges or watermark. Not a copy of the fashion photo on the user screen; original location, original clean-shaven model and garments in the attached studio references. One landscape frame.
+
+The mobile asset is a vertical crop from the same photograph, centered on the model.
+
 ## WHYNICKY® STUDIO revision
 
 The current release uses original images generated with ImageGen. Source names for the published editorial frames and their product references are listed in `editorials.mjs`. The three original product pairs remain in the catalog.

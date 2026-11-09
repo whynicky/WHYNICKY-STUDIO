@@ -212,7 +212,7 @@ const cardsNearViewport = new IntersectionObserver(entries => {
     if (!entry.isIntersecting) continue;
     const card = entry.target;
     cardsNearViewport.unobserve(card);
-    const images = [...card.querySelectorAll('.product-card__turn img')];
+    const images = [...card.querySelectorAll('.product-card__views img')];
     Promise.all(images.map(image => image.decode())).then(() => {
       card.setAttribute('data-views-ready', '');
       card.querySelector('[data-card-view]').hidden = false;
