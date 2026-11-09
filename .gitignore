@@ -1,2 +1,18 @@
-dist/
+# Generated output and local caches
+/dist/
+/node_modules/
+/coverage/
+/.cache/
+/tmp/
+*.log
+
+# Editor and OS files
+.idea/
+.vscode/
 .DS_Store
+Thumbs.db
+
+# Local environment overrides
+.env
+.env.*
+!.env.example

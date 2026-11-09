@@ -13,7 +13,9 @@ const types = {
   '.webp': 'image/webp',
   '.svg': 'image/svg+xml',
   '.woff2': 'font/woff2',
-  '.ttf': 'font/ttf',
+  '.avif': 'image/avif',
+  '.ico': 'image/x-icon',
+  '.png': 'image/png',
 };
 
 createServer(async (request, response) => {

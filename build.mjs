@@ -8,7 +8,8 @@ const root = dirname(fileURLToPath(import.meta.url));
 const dist = join(root, 'dist');
 const origin = process.env.SITE_ORIGIN || '';
 const brand = 'WHYNICKY® STUDIO';
-const wordmark = `<span class="wordmark" aria-hidden="true"><span class="wordmark-name"><span class="wordmark-core">WHYNICKY</span><sup>®</sup></span> <span class="wordmark-studio">STUDIO</span></span>`;
+const wordmark = '<img class="wordmark" src="/assets/brand-wordmark.svg" width="1484" height="194" alt="">';
+const emblem = '<img class="brand-emblem" src="/assets/brand-emblem.svg" width="874" height="435" alt="">';
 const campaign = 'Fault Lines';
 const season = 'Autumn / Winter 2026';
 const nav = [['/shop/', 'Shop'], ['/lookbook/', 'Lookbook'], ['/about/', 'About']];
@@ -45,11 +46,14 @@ function pieceLinks(pieces) {
   }).join('<span aria-hidden="true">/</span>');
 }
 
-function editorialFigure(frame, className = '', sizes) {
+function fittingFigure(frame, index, sizes) {
   const [, , pieces] = frame;
-  return `<figure class="editorial-frame ${className}">
+  return `<figure class="editorial-frame fitting">
     ${editorial(frame, { sizes })}
-    <figcaption>${pieceLinks(pieces)}</figcaption>
+    <figcaption>
+      <span class="fitting-index" aria-hidden="true">0${index + 1}</span>
+      <span class="fitting-pieces">${pieceLinks(pieces)}</span>
+    </figcaption>
   </figure>`;
 }
 
@@ -60,7 +64,7 @@ function header(page) {
     <button class="mobile-menu" type="button" data-open="menu" aria-haspopup="dialog" aria-label="Menu">
       <span aria-hidden="true" class="menu-lines"></span><span>Menu</span>
     </button>
-    <a class="header-brand" href="/" aria-label="${brand} home"${page === 'home' ? ' aria-current="page"' : ''}>${wordmark}</a>
+    <a class="header-brand" href="/" aria-label="${brand} home"${page === 'home' ? ' aria-current="page"' : ''}>${emblem}</a>
     <div class="header-actions">
       <button class="header-search" type="button" data-open="search" aria-haspopup="dialog">Search</button>
       <button class="header-bag" type="button" data-open="bag" aria-haspopup="dialog">Bag (<span data-bag-count>0</span>)</button>
@@ -74,7 +78,12 @@ function footer(page) {
       <nav class="footer-nav" aria-label="Footer">${nav.map(([path, label]) => link(path, label, page === label.toLowerCase())).join('')}</nav>
       <button class="footer-top text-link" type="button" data-back-to-top>Back to top${arrow('up')}</button>
     </div>
-    <div class="footer-mark"><a href="/" class="footer-brand" aria-label="${brand} home">${wordmark}</a></div>
+    <a href="/" class="footer-brand" aria-label="${brand} home">
+      <picture>
+        <source media="(max-width: 600px)" srcset="/assets/brand-wordmark-stacked.svg" width="919" height="923">
+        <img src="/assets/brand-wordmark-tall.svg" width="1484" height="458" alt="">
+      </picture>
+    </a>
     <div class="footer-note">
       <span>© 2026 ${brand}</span>
       ${link('/store-info/', 'Store information', page === 'info')}
@@ -116,8 +125,9 @@ function document(page, title, description, body, socialImage = '/assets/fault-l
   <meta property="og:title" content="${title}">
   <meta property="og:description" content="${description}">
   <meta property="og:image" content="${origin}${socialImage}">
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-  <link rel="preload" href="/assets/anton.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="/assets/favicon.ico">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
   <link rel="preload" href="/assets/geist.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/style.css">
   <script type="module" src="/store.js"></script>
@@ -175,13 +185,12 @@ function catalog() {
 }
 
 const home = `<section class="hero" aria-labelledby="hero-title">
-    <div class="hero-scene">
-      <picture class="hero-distance">
-        <source media="(max-width: 760px) and (orientation: portrait)" srcset="/assets/fault-lines-skyline-mobile.webp">
-        ${image('/assets/fault-lines-skyline.webp', 'A model in a cropped charcoal hooded jacket and wide stone-gray denim stands under a blue sky.', { width: 1672, height: 941, eager: true, extra: 'class="hero-photo"' })}
-      </picture>
-      <div class="hero-plane" aria-hidden="true"></div>
-    </div>
+    <picture class="hero-scene">
+      <source media="(max-width: 760px) and (orientation: portrait)" type="image/avif" srcset="/assets/fault-lines-skyline-mobile.avif">
+      <source media="(max-width: 760px) and (orientation: portrait)" srcset="/assets/fault-lines-skyline-mobile.webp">
+      <source type="image/avif" srcset="/assets/fault-lines-skyline-1200.avif 1200w, /assets/fault-lines-skyline.avif 1672w" sizes="100vw">
+      ${image('/assets/fault-lines-skyline.webp', 'A model in a cropped charcoal hooded jacket and wide stone-gray denim stands under a blue sky.', { width: 1672, height: 941, eager: true, extra: 'class="hero-photo"' })}
+    </picture>
     <h1 id="hero-title" class="hero-wordmark"><span class="visually-hidden">${brand}</span>${wordmark}</h1>
     <div class="hero-bottom">
       ${inlineLink('/shop/', 'Shop collection', 'diagonal')}
@@ -206,12 +215,15 @@ const home = `<section class="hero" aria-labelledby="hero-title">
     </div>
   </section>
   <section class="home-spread section-pad" aria-labelledby="fittings-title">
-    <div class="section-line">
-      <h2 id="fittings-title">Studio fittings</h2>
+    <div class="section-line fittings-heading">
+      <div>
+        <p class="eyebrow">Fault Lines · Looks 01–03</p>
+        <h2 id="fittings-title">Studio fittings</h2>
+      </div>
       ${inlineLink('/lookbook/#fittings', 'View lookbook', 'diagonal')}
     </div>
     <div class="spread-images">
-      ${homeFrames.slice(1).map(frame => editorialFigure(frame, '', '(max-width: 760px) 55vw, 33vw')).join('')}
+      ${homeFrames.slice(1).map((frame, index) => fittingFigure(frame, index, index === 0 ? '(max-width: 760px) 100vw, 50vw' : '(max-width: 760px) 50vw, 25vw')).join('')}
     </div>
   </section>`;
 
@@ -350,7 +362,9 @@ const pages = [
 ];
 
 const assets = [
-  'geist.woff2', 'geist-license.txt', 'anton.ttf', 'anton-OFL.txt', 'favicon.svg', 'fault-lines-skyline.webp', 'fault-lines-skyline-mobile.webp', `${homeFrames[0][0]}-mobile.webp`,
+  'geist.woff2', 'geist-license.txt', 'brand-emblem.svg', 'brand-wordmark.svg', 'brand-wordmark-tall.svg', 'brand-wordmark-stacked.svg',
+  'favicon.svg', 'favicon.ico', 'apple-touch-icon.png',
+  'fault-lines-skyline.webp', 'fault-lines-skyline-mobile.webp', 'fault-lines-skyline.avif', 'fault-lines-skyline-1200.avif', 'fault-lines-skyline-mobile.avif', `${homeFrames[0][0]}-mobile.webp`,
   ...[...lookbookFrames, ...homeFrames]
     .flatMap(([name]) => [`${name}.webp`, `${name}-small.webp`]),
   ...[...products, ...archivedProducts].flatMap(product => [

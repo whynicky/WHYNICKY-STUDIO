@@ -389,24 +389,6 @@ if (lookbook) {
 const hero = document.querySelector('.hero');
 if (hero) {
   const header = document.querySelector('.site-header');
-  const scene = hero.querySelector('.hero-scene');
-  const layeredMotion = matchMedia('(min-width: 761px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
-  let frame = 0;
-  function setPointer(x, y) {
-    cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(() => {
-      scene.style.setProperty('--pointer-x', x);
-      scene.style.setProperty('--pointer-y', y);
-    });
-  }
-  hero.addEventListener('pointermove', event => {
-    if (!layeredMotion.matches || event.pointerType === 'touch') return;
-    const bounds = hero.getBoundingClientRect();
-    setPointer((event.clientX - bounds.left) / bounds.width * 2 - 1, (event.clientY - bounds.top) / bounds.height * 2 - 1);
-  }, { passive: true });
-  hero.addEventListener('pointerleave', () => setPointer(0, 0));
-  layeredMotion.addEventListener('change', () => setPointer(0, 0));
-
   let observer;
   new ResizeObserver(() => {
     observer?.disconnect();
