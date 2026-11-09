@@ -1,4 +1,5 @@
 import { categories, featuredProducts, money, photoPath, productById, productPath, products, sizes } from './collection.js';
+import { sitePath } from './site-path.js';
 
 const storageKey = 'whynicky-bag-v1';
 const maxQuantity = 99;
@@ -64,9 +65,9 @@ function bagLine(line, interactive) {
   const product = productById.get(line.id);
   const variant = `${product.name}, size ${line.size}`;
   return `<article class="bag-line" data-line="${line.id}:${line.size}">
-    <a href="${productPath(product)}" tabindex="-1" aria-hidden="true"><img src="${photoPath(product, 'front', 'card')}" width="80" height="100" alt=""></a>
+    <a href="${sitePath(productPath(product))}" tabindex="-1" aria-hidden="true"><img src="${sitePath(photoPath(product, 'front', 'card'))}" width="80" height="100" alt=""></a>
     <div>
-      <h3><a href="${productPath(product)}">${product.name}</a></h3>
+      <h3><a href="${sitePath(productPath(product))}">${product.name}</a></h3>
       <p>${product.color} · Size ${line.size}</p>
       ${interactive ? `<div class="bag-line__controls">
         <div class="quantity" role="group" aria-label="Quantity for ${variant}">
@@ -86,14 +87,14 @@ function renderBag() {
   const subtotal = bag.reduce((sum, line) => sum + line.quantity * productById.get(line.id).price, 0);
   for (const label of document.querySelectorAll('[data-bag-count]')) label.textContent = count;
   document.querySelector('#bag-title').textContent = `Bag (${count})`;
-  const empty = `<div class="empty-state"><p>Your bag is empty.</p><a class="text-link" href="/shop/">Explore the collection</a></div>`;
+  const empty = `<div class="empty-state"><p>Your bag is empty.</p><a class="text-link" href="${sitePath('/shop/')}">Explore the collection</a></div>`;
   const subtotalRow = `<p class="bag-subtotal"><span>Subtotal</span><span>${money(subtotal)} USD</span></p>`;
   bagContent.innerHTML = count
     ? `<div>${bag.map(line => bagLine(line, true)).join('')}</div>
       <div class="bag-total">${subtotalRow}
         <p class="muted">Demonstration store. Payment is unavailable.</p>
         ${storageAvailable ? '' : '<p class="muted">This browser is unable to save your bag after reload.</p>'}
-        <a class="button-primary" href="/checkout/">Checkout preview <span aria-hidden="true">↗</span></a>
+        <a class="button-primary" href="${sitePath('/checkout/')}">Checkout preview <span aria-hidden="true">↗</span></a>
       </div>`
     : empty;
   if (checkoutSummary) {
@@ -119,8 +120,8 @@ function renderSearch() {
     ? `${matches.length} ${matches.length === 1 ? 'piece' : 'pieces'} found`
     : 'Selected pieces';
   document.querySelector('#search-results').innerHTML = matches.length
-    ? matches.map(product => `<a class="search-item" href="${productPath(product)}">
-        <img src="${photoPath(product, 'front', 'card')}" width="64" height="80" alt="" loading="lazy">
+    ? matches.map(product => `<a class="search-item" href="${sitePath(productPath(product))}">
+        <img src="${sitePath(photoPath(product, 'front', 'card'))}" width="64" height="80" alt="" loading="lazy">
         <span><strong>${product.name}</strong><small>${product.color}</small></span><span>${money(product.price)}</span>
       </a>`).join('')
     : '<div class="empty-state"><p>Try a name, material or color such as “denim” or “stone”.</p><button type="button" class="text-link" data-clear-search>Clear search</button></div>';
