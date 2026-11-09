@@ -6,6 +6,10 @@
 /tmp/
 *.log
 
+# Local publishing metadata and image generation notes
+/.openai/
+/IMAGE-PROMPTS.md
+
 # Editor and OS files
 .idea/
 .vscode/

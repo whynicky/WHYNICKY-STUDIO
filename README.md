@@ -20,7 +20,7 @@ The oval emblem pairs outlined lettering with a split W and a separate registere
 
 ![Tall split-W wordmark in the site footer](docs/preview/wordmark-footer.webp)
 
-[Oval emblem](src/assets/brand-emblem.svg) · [Wide wordmark](src/assets/brand-wordmark-tall.svg) · [Stacked wordmark](src/assets/brand-wordmark-stacked.svg) · [Favicon](src/assets/favicon.svg) · [Image prompts](IMAGE-PROMPTS.md)
+[Oval emblem](src/assets/brand-emblem.svg) · [Wide wordmark](src/assets/brand-wordmark-tall.svg) · [Stacked wordmark](src/assets/brand-wordmark-stacked.svg) · [Favicon](src/assets/favicon.svg)
 
 ## Local development
 
