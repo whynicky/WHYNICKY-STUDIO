@@ -1,6 +1,30 @@
 # Fault Lines image prompts
 
-Generated with the built-in ImageGen tool. The first campaign image became `campaign.webp`. The long shot became `hero.webp`, with a dedicated mobile crop. Product detail images are crops of the front photos.
+## WHYNICKY® STUDIO revision
+
+The current release uses original images generated with ImageGen. Source names for the published editorial frames and their product references are listed in `editorials.mjs`. The three original product pairs remain in the catalog.
+
+### Product edits
+
+The front setup is a 4:5 studio photograph on a seamless white sweep, with diffuse overhead light and the complete garment centered on an invisible form. Each back view uses the corresponding front as its reference and matches its position, scale, color and material. The rear details follow the construction below.
+
+- **flue-coat**. Flue Coat, a men's and unisex long waxed coal-black cotton duck coat with a very broad dropped shoulder and a wide upper body tapering slightly by the knee, gathered at the rear under one deep horizontal saddle yoke. Broad two-piece barrel sleeves and plain heavy cuffs. Thick high storm collar that opens out flat on one side, hidden straight center fastening and two wide flat rectangular pockets entered from the side at low hip. A light wax bloom and pale rubbing at elbows and seam edges. Mid-calf length, split rear walking vent. Dark graphite-black under bright light. Read as a contemporary oversized industrial canvas coat with an imposing sculptural silhouette and a practical cut. No hood, belt, ornament, asymmetrical panels or extra zippers.
+- **soot-overshirt**. Soot Overshirt, unisex very cropped wide graphite-black washed cotton dobby overshirt, firm dry peppered weave and faded seams, an intentionally blunt low spread shirt collar, the top single smoke horn button visible and the other buttons under a straight hidden placket. Elongated broad sleeves with wide double button cuffs and easy volume where the elbow folds. Raw square hem just below waist, a half-inch longer in rear. One wide inset welt pocket at lower left chest; short deep inverted box pleat from each shoulder blade below the straight back yoke, clean long back. Strong rectangular negative space between sleeve and body, workwear cloth, clear wearable pattern.
+- **cinder-knit**. Cinder Knit, a very broad cropped men's and unisex coal graphite reverse stockinette wool pullover, subtle silvery flecks in tightly knitted dry textured yarn, a low wide doubled crew collar, exaggerated balloon raglan sleeves that tuck into very deep thick rib cuffs, narrow firm waistband with one tiny break at each side. Broad short body and very slightly longer back hem. The deeply ribbed cuff and hem structure are clearly different from the grainy knit body, no diagonal across the torso and no layered knit panels. Real garment yarn and construction, worn in but tidy edges, cropped high.
+
+### Hero
+
+A standalone wide 16:9 homepage campaign photograph for a conceptual unisex avant-garde streetwear studio. Exactly two real garments from the reference product photographs installed in a photographic set with invisible thin black clips: the short charcoal-grey brushed moleskin Rift Jacket with tall stand collar and broad curled sleeves, and the oversized washed black Drift Denim jeans with extra wide legs and curved worn panels directly below, almost stacked like an outfit suspended in midair. Preserve the particular collar, wrap seam lines, cuff construction and denim proportions of the references. No mannequin and no human. Natural gravity, garments hang convincingly, subtly turned as a single ensemble, one sleeve catches a side light. A single high slim blackened steel horizontal rail supports the jacket, realistically almost disappears into deep indigo-charcoal backdrop. A hard silver strip light through a large unseen cutter on the upper right projects a very broad pale wedge diagonally onto a painted midnight-blue studio cyclorama, with soft edge, garment shadow dark and believable behind. Faint textured silvery blue floor. Dramatic midnight-blue and black palette, neutral fabric color, cinematic analog fashion lighting, rich yet crisp surfaces, no haze or excessive darkness on garment, picture like a gallery still life of clothing. No architecture beyond a simple studio stage, no text or logos. Composition occupies center-right on desktop, centered around x=60 percent. Keep entire look compact enough to make a strong centered vertical crop, preserve face-free collar and hems when cropped mobile; silhouette fully visible between y=11 and y=88 percent. Deep ink-blue negative space across left third and darkest bottom edge for typography added later. Lighting sculpts the clothes as the primary subject; NO landscape, road, quarry, outdoor scene, extra garment or futuristic sci-fi object.
+
+For mobile, the same two garments hang centered in a separate vertical photograph. The upper edge is kept dark for navigation, with space below the hems for the wordmark and shop link.
+
+### Editorials
+
+The lighter fittings use pale grey seamless paper and soft side light. The darker studio set uses a single beam to describe the shape of the sleeves, shoulders and trouser legs. New images use the product photographs as clothing references. Repeat portraits also use the first frame of the model to retain their face and haircut. The red shutter frames, selected knit studies and one Rift Jacket study carry over from the previous edit.
+
+## Original six-piece storefront
+
+The following prompts record the initial release. Some images were retired during the revision.
 
 ## rift-jacket
 

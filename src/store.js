@@ -1,4 +1,4 @@
-import { categories, money, photoPath, productById, productPath, products, sizes } from './collection.js';
+import { categories, featuredProducts, money, photoPath, productById, productPath, products, sizes } from './collection.js';
 
 const storageKey = 'whynicky-bag-v1';
 const maxQuantity = 99;
@@ -64,7 +64,7 @@ function bagLine(line, interactive) {
   const product = productById.get(line.id);
   const variant = `${product.name}, size ${line.size}`;
   return `<article class="bag-line" data-line="${line.id}:${line.size}">
-    <a href="${productPath(product)}" tabindex="-1" aria-hidden="true"><img src="${photoPath(product)}" width="80" height="100" alt=""></a>
+    <a href="${productPath(product)}" tabindex="-1" aria-hidden="true"><img src="${photoPath(product, 'front', 'card')}" width="80" height="100" alt=""></a>
     <div>
       <h3><a href="${productPath(product)}">${product.name}</a></h3>
       <p>${product.color} · Size ${line.size}</p>
@@ -114,13 +114,13 @@ function renderSearch() {
     const category = categories.find(([id]) => id === product.category)[1];
     const keywords = [product.name, product.color, product.material, product.description, category].join(' ').toLowerCase();
     return words.every(word => keywords.includes(word));
-  }) : products;
+  }) : featuredProducts.slice(0, 4);
   document.querySelector('#search-count').textContent = query
     ? `${matches.length} ${matches.length === 1 ? 'piece' : 'pieces'} found`
-    : 'Explore the collection';
+    : 'Selected pieces';
   document.querySelector('#search-results').innerHTML = matches.length
     ? matches.map(product => `<a class="search-item" href="${productPath(product)}">
-        <img src="${photoPath(product)}" width="64" height="80" alt="">
+        <img src="${photoPath(product, 'front', 'card')}" width="64" height="80" alt="" loading="lazy">
         <span><strong>${product.name}</strong><small>${product.color}</small></span><span>${money(product.price)}</span>
       </a>`).join('')
     : '<div class="empty-state"><p>Try a name, material or color such as “denim” or “stone”.</p><button type="button" class="text-link" data-clear-search>Clear search</button></div>';
@@ -207,6 +207,34 @@ window.addEventListener('pageshow', event => {
 });
 renderBag();
 
+const cardsNearViewport = new IntersectionObserver(entries => {
+  for (const entry of entries) {
+    if (!entry.isIntersecting) continue;
+    const card = entry.target;
+    cardsNearViewport.unobserve(card);
+    const images = [...card.querySelectorAll('.product-card__turn img')];
+    Promise.all(images.map(image => image.decode())).then(() => {
+      card.setAttribute('data-views-ready', '');
+      card.querySelector('[data-card-view]').hidden = false;
+    }).catch(() => {
+      // A failed back image leaves the front view usable.
+    });
+  }
+}, { rootMargin: '360px 0px' });
+for (const card of document.querySelectorAll('.product-card')) cardsNearViewport.observe(card);
+
+document.addEventListener('click', event => {
+  const control = event.target.closest('[data-card-view]');
+  if (!control) return;
+  const card = control.closest('[data-product]');
+  const showBack = card.dataset.cardSide !== 'back';
+  const nextView = showBack ? 'Front view' : 'Back view';
+  card.dataset.cardSide = showBack ? 'back' : 'front';
+  control.setAttribute('aria-pressed', String(showBack));
+  control.setAttribute('aria-label', `${nextView} of ${productById.get(card.dataset.product).name}`);
+  control.querySelector('span').textContent = nextView;
+});
+
 const grid = document.querySelector('#catalog-grid');
 if (grid) {
   const filters = [...document.querySelectorAll('[data-category]')];
@@ -262,7 +290,7 @@ if (productPage) {
   const galleryImages = [...productPage.querySelectorAll('[data-gallery-image]')];
   const galleryOptions = [...productPage.querySelectorAll('[data-gallery-view]')];
   const form = productPage.querySelector('[data-purchase]');
-  const sizeError = form.querySelector('#size-error');
+  const sizeError = form?.querySelector('#size-error');
   const zoomImage = document.querySelector('#zoom-image');
   let activeView = 0;
 
@@ -305,8 +333,8 @@ if (productPage) {
     }
   }, { passive: false });
 
-  form.addEventListener('change', () => { sizeError.hidden = true; });
-  form.addEventListener('submit', event => {
+  form?.addEventListener('change', () => { sizeError.hidden = true; });
+  form?.addEventListener('submit', event => {
     event.preventDefault();
     const size = new FormData(form).get('size');
     if (!sizes.includes(size)) {
@@ -321,9 +349,64 @@ if (productPage) {
   });
 }
 
+const lookbook = document.querySelector('.lookbook-grid');
+if (lookbook) {
+  const tiles = [...lookbook.querySelectorAll('[data-look-frame]')];
+  const viewer = document.getElementById('look-view');
+  const photo = viewer.querySelector('.look-view-image');
+  const pieces = viewer.querySelector('[data-look-pieces]');
+  const status = viewer.querySelector('[data-look-status]');
+  let activeFrame = 0;
+
+  function showFrame(index) {
+    activeFrame = (index + tiles.length) % tiles.length;
+    const tile = tiles[activeFrame];
+    const thumbnail = tile.querySelector('img');
+    photo.src = tile.href;
+    photo.alt = thumbnail.alt;
+    pieces.replaceChildren(...[...tile.nextElementSibling.childNodes].map(node => node.cloneNode(true)));
+    status.textContent = `Photograph ${activeFrame + 1} of ${tiles.length}`;
+  }
+
+  lookbook.addEventListener('click', event => {
+    const tile = event.target.closest('[data-look-frame]');
+    if (!tile || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    showFrame(Number(tile.dataset.lookFrame));
+    openDialog('look-view', tile);
+  });
+
+  for (const button of viewer.querySelectorAll('[data-look-step]')) {
+    button.addEventListener('click', () => showFrame(activeFrame + Number(button.dataset.lookStep)));
+  }
+  viewer.addEventListener('keydown', event => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || event.altKey || event.metaKey || event.ctrlKey) return;
+    event.preventDefault();
+    showFrame(activeFrame + (event.key === 'ArrowLeft' ? -1 : 1));
+  });
+}
+
 const hero = document.querySelector('.hero');
 if (hero) {
   const header = document.querySelector('.site-header');
+  const scene = hero.querySelector('.hero-scene');
+  const layeredMotion = matchMedia('(min-width: 761px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+  let frame = 0;
+  function setPointer(x, y) {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      scene.style.setProperty('--pointer-x', x);
+      scene.style.setProperty('--pointer-y', y);
+    });
+  }
+  hero.addEventListener('pointermove', event => {
+    if (!layeredMotion.matches || event.pointerType === 'touch') return;
+    const bounds = hero.getBoundingClientRect();
+    setPointer((event.clientX - bounds.left) / bounds.width * 2 - 1, (event.clientY - bounds.top) / bounds.height * 2 - 1);
+  }, { passive: true });
+  hero.addEventListener('pointerleave', () => setPointer(0, 0));
+  layeredMotion.addEventListener('change', () => setPointer(0, 0));
+
   let observer;
   new ResizeObserver(() => {
     observer?.disconnect();

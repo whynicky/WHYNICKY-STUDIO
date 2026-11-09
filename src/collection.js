@@ -1,3 +1,5 @@
+import { newProducts } from './new-pieces.js';
+
 export const sizes = ['XS', 'S', 'M', 'L', 'XL'];
 
 export const categories = [
@@ -7,7 +9,7 @@ export const categories = [
   ['bottoms', 'Bottoms'],
 ];
 
-export const products = [
+const originalProducts = [
   {
     id: 'rift-jacket',
     name: 'Rift Jacket',
@@ -19,7 +21,8 @@ export const products = [
     fit: 'Boxy through the chest, with dropped shoulders and a hem that sits at the waist.',
     care: 'Dry clean. Steam lightly from the inside.',
     measurements: [[112, 52], [116, 54], [120, 56], [124, 58], [128, 60]],
-    related: ['drift-denim', 'trace-longsleeve', 'slag-bomber'],
+    detail: true,
+    related: ['drift-denim', 'underlay-top', 'hinge-jacket'],
   },
   {
     id: 'drift-denim',
@@ -32,7 +35,8 @@ export const products = [
     fit: 'High rise with a fitted waist and a wide, full length leg.',
     care: 'Wash inside out at 30°C with similar colors. Line dry.',
     measurements: [[68, 77], [73, 78], [78, 79], [83, 80], [88, 81]],
-    related: ['rift-jacket', 'fault-knit', 'trace-longsleeve'],
+    detail: true,
+    related: ['rift-jacket', 'offset-jean', 'strata-knit'],
   },
   {
     id: 'slag-bomber',
@@ -45,7 +49,8 @@ export const products = [
     fit: 'Relaxed through the body with room for a layer underneath.',
     care: 'Specialist leather clean only. Store on a broad hanger.',
     measurements: [[116, 57], [120, 59], [124, 61], [128, 63], [132, 65]],
-    related: ['fold-trouser', 'trace-longsleeve', 'rift-jacket'],
+    detail: true,
+    related: ['plane-trouser', 'underlay-top', 'scarp-rider'],
   },
   {
     id: 'fault-knit',
@@ -88,9 +93,20 @@ export const products = [
   },
 ];
 
-export const productById = new Map(products.map(product => [product.id, product]));
+export const products = [...originalProducts.slice(0, 3), ...newProducts];
+export const archivedProducts = originalProducts.slice(3).map(product => ({
+  ...product, archived: true, detail: true, related: ['rift-jacket', 'drift-denim', 'slag-bomber'],
+}));
+export const productById = new Map([...products, ...archivedProducts].map(product => [product.id, product]));
+
+export const featuredProducts = [
+  'rift-jacket', 'drift-denim', 'slag-bomber',
+  'hinge-jacket', 'offset-jean', 'strata-knit',
+  'flue-coat', 'silt-trouser', 'cinder-knit',
+].map(id => productById.get(id));
 export const productPath = product => `/product/${product.id}/`;
-export const photoPath = (product, view = 'front') => `/assets/${product.id}${view === 'front' ? '' : `-${view}`}.webp`;
+export const photoPath = (product, view = 'front', scale = '') =>
+  `/assets/${product.id}${view === 'front' ? '' : `-${view}`}${scale ? `-${scale}` : ''}.webp`;
 
 export const money = new Intl.NumberFormat('en-US', {
   style: 'currency',
