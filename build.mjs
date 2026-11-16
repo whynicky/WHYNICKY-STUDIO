@@ -3,7 +3,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { archivedProducts, categories, featuredProducts, money, photoPath, productById, productPath, products, sizes } from './src/collection.js';
 import { sitePath } from './src/site-path.js';
-import { campaignFrames, fittingFor, formats, heroFrame, homeFrames, lookbookFrames, studioCampaignFrames } from './editorials.mjs';
+import { campaignFrames, fittingFor, formats, homeFrames, lookbookFrames, studioCampaignFrames } from './editorials.mjs';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const dist = join(root, 'dist');
@@ -97,7 +97,7 @@ function dialogs(page) {
     dialog('bag', 'Bag', '<div class="panel-body bag-body" id="bag-content"></div><p class="visually-hidden" id="bag-status" role="status"></p>');
 }
 
-function document(page, title, description, body, socialImage = '/assets/banner-hero.webp') {
+function document(page, title, description, body, socialImage = '/assets/fault-lines-skyline.webp') {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -168,12 +168,12 @@ function catalog() {
 
 const home = `<section class="hero" aria-labelledby="hero-title">
     <picture class="hero-scene">
-      <source media="(max-aspect-ratio: 6/5)" type="image/avif" srcset="${sitePath('/assets/banner-hero-mobile-720.avif')} 720w, ${sitePath('/assets/banner-hero-mobile.avif')} 941w" sizes="max(100vw, 56.28svh)">
-      <source media="(max-aspect-ratio: 6/5)" srcset="${sitePath('/assets/banner-hero-mobile.webp')}">
-      <source type="image/avif" srcset="${sitePath('/assets/banner-hero-1200.avif')} 1200w, ${sitePath('/assets/banner-hero.avif')} 1672w" sizes="max(100vw, 177.68svh)">
-      ${image('/assets/banner-hero.webp', heroFrame[1], { width: 1672, height: 941, eager: true, extra: 'class="hero-photo"' })}
+      <source media="(max-width: 760px) and (orientation: portrait)" type="image/avif" srcset="${sitePath('/assets/fault-lines-skyline-mobile.avif')}">
+      <source media="(max-width: 760px) and (orientation: portrait)" srcset="${sitePath('/assets/fault-lines-skyline-mobile.webp')}">
+      <source type="image/avif" srcset="${sitePath('/assets/fault-lines-skyline-1200.avif')} 1200w, ${sitePath('/assets/fault-lines-skyline.avif')} 1672w" sizes="100vw">
+      ${image('/assets/fault-lines-skyline.webp', 'A model in a charcoal hooded jacket and wide stone-gray denim stands under a blue sky.', { width: 1672, height: 941, eager: true, extra: 'class="hero-photo"' })}
     </picture>
-    <h1 id="hero-title" class="visually-hidden">${campaign} by ${brand}</h1>
+    <h1 id="hero-title" class="hero-wordmark"><span class="visually-hidden">${brand}</span>${wordmark}</h1>
     <div class="hero-bottom">
       ${inlineLink('/shop/', 'Shop collection')}
     </div>
@@ -371,7 +371,7 @@ const pages = [
 const assets = [
   'geist.woff2', 'geist-license.txt', 'brand-emblem.svg', 'brand-wordmark.svg', 'brand-wordmark-tall.svg', 'brand-wordmark-stacked.svg',
   'favicon.svg', 'favicon.ico', 'apple-touch-icon.png',
-  'banner-hero.avif', 'banner-hero-1200.avif', 'banner-hero-mobile.avif', 'banner-hero-mobile-720.avif', 'banner-hero-mobile.webp',
+  'fault-lines-skyline.webp', 'fault-lines-skyline-mobile.webp', 'fault-lines-skyline.avif', 'fault-lines-skyline-1200.avif', 'fault-lines-skyline-mobile.avif',
   ...[...lookbookFrames, ...homeFrames, ...campaignFrames, ...studioCampaignFrames]
     .flatMap(([name]) => [`${name}.webp`, `${name}-small.webp`]),
   ...[...products, ...archivedProducts].flatMap(product => [

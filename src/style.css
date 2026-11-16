@@ -121,7 +121,7 @@ main:focus { outline: none; }
   min-height: 100svh;
   overflow: hidden;
   color: white;
-  background: #282522;
+  background: #0e1725;
   isolation: isolate;
 }
 .hero-scene, .hero-photo {
@@ -131,15 +131,24 @@ main:focus { outline: none; }
   height: 100%;
 }
 .hero-scene { z-index: -2; }
-.hero-photo { object-fit: cover; object-position: 68% 26%; }
+.hero-photo { object-fit: cover; object-position: center; }
 .hero::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgb(16 14 12 / 76%), rgb(16 14 12 / 60%) 64px, transparent 184px),
-    linear-gradient(0deg, rgb(16 14 12 / 66%), transparent 24%);
+  background: linear-gradient(180deg, rgb(5 9 15 / 58%), transparent 24%), linear-gradient(0deg, rgb(5 9 15 / 40%), transparent 28%);
   z-index: -1;
 }
+
+.hero-wordmark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  line-height: 1;
+}
+.hero-wordmark .wordmark { width: 71%; filter: invert(1) drop-shadow(0 2px 14px rgb(8 12 18 / 48%)); }
 
 .hero-bottom {
   position: absolute;
@@ -154,10 +163,6 @@ main:focus { outline: none; }
 }
 .hero-bottom .text-link:hover { background: white; color: var(--ink); }
 
-@media (max-aspect-ratio: 6/5) {
-  .hero-photo { object-position: 62% 31%; }
-}
-
 @media (max-width: 1320px) and (min-aspect-ratio: 6/5) {
   .hero-bottom { text-align: center; }
 }
@@ -166,12 +171,8 @@ main:focus { outline: none; }
   .hero-bottom { text-align: right; }
 }
 
-@media (min-width: 761px) and (max-aspect-ratio: 3/4) {
-  .hero-photo { object-position: 62% 64%; }
-}
-
 @media (max-aspect-ratio: 3/7) {
-  .hero { background: #625c54; }
+  .hero { background: #0e1725; }
   .hero-photo {
     height: min(100%, 228vw);
     mask-image: linear-gradient(black calc(100% - 48px), transparent);
@@ -522,6 +523,7 @@ main:focus { outline: none; }
   .mobile-menu { display: flex; justify-self: start; gap: 8px; font-size: 14px; }
   .menu-lines { width: 16px; height: 6px; border-block: 1px solid currentColor; }
   .brand-emblem { width: 96px; }
+  .hero-wordmark .wordmark { width: calc(100% - 2 * var(--gutter)); }
   .hero-bottom { text-align: center; }
   .catalog, .selection { padding-block: 16px 48px; }
   .catalog-title h1 { font-size: 30px; line-height: 36px; }
